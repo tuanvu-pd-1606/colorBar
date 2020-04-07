@@ -13,8 +13,5 @@ function colorBarRGB(x){
     blue = 1-sigmoid(x, gain, offset_x)
     green = sigmoid(x, gain, offset_green) + (1-sigmoid(x,gain,-1*offset_green));
     green = green - 1.0;
-    return [blue, green, red];
+    return [parseInt(red*256), parseInt(green*256),parseInt(blue*256)];
 }
-
-
-    

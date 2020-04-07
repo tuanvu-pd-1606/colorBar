@@ -1,0 +1,46 @@
+<canvas id="MyCanvas">
+    <script>
+    window.onload = function() {
+       var canvas = document.getElementById('MyCanvas');
+       var ctx = canvas.getContext('2d');  
+       drawColorWheel(canvas,ctx);
+    };
+      
+    // 色相環の描画 
+    function drawColorWheel(canvas,ctx) {   
+       var radius    = 100; // 半径 
+       
+       canvas.width  = radius * 2;
+       canvas.height = radius * 2;         
+        
+       // 色相環の作成
+       for (var i = 0; i < 360; i++) {
+         var rgb = hsl2rgb(i,100,50); 
+       
+         ctx.beginPath();
+         ctx.moveTo(radius,radius)
+         // -90はラジアン角がx軸の正方向からはじまる為(時計回り)
+         ctx.arc(radius, radius, radius, (-90+i)*Math.PI/180, (-90+i+2)*Math.PI/180, false);
+     
+         ctx.closePath();
+         ctx.fillStyle = RGB2bgColor(rgb.r,rgb.g,rgb.b);
+         ctx.fill();     
+       }   
+    }
+     
+    // RGBから#ffffff形式へ変換する
+    function RGB2bgColor(r,g,b) {
+     
+      r = r.toString(16);
+      if (r.length == 1) r = "0" + r;
+     
+      g = g.toString(16);
+      if (g.length == 1) g = "0" + g;
+     
+      b = b.toString(16);
+      if (b.length == 1) b = "0" + b;
+     
+      return '#' + r + g + b;  
+    }
+     
+    </script>

@@ -16,12 +16,13 @@ def colorBarRGB(x):
     blue = 1-sigmoid(x, gain, offset_x)
     green = sigmoid(x, gain, offset_green) + (1-sigmoid(x,gain,-1*offset_green))
     green = green - 1.0
+    print(gain,offset_x)
     return (blue,green,red)
 
 #入力値は0.0〜1.0の範囲
-data = [colorBarRGB(x*0.001) for x in range(0,1000)]
+print(colorBarRGB(0.5))
 
-print(colorBarRGB(0.3))
+data = [colorBarRGB(x*0.001) for x in range(0,1000)]
 
 color = df(data)
 color.plot()
